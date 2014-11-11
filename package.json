@@ -1,0 +1,26 @@
+{
+  "name": "ChessAPI",
+  "version": "0.1.0",
+  "description": "A state restful chess API",
+  "author": "Alexander Kohlhofer <alexander@kohlhofer.com>",
+  "scripts": {
+    "test": "jasmin-node",
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "chess": "0.2.5",
+    "restify": "2.8.2",
+    "uci": "0.3.2"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.3"
+  }
+}
