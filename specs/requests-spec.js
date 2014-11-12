@@ -30,6 +30,20 @@ describe('move', function () {
 
 });
 
+describe('index', function () {
+
+  it('it should send a default set of meta information and call the next route', function () {
+    var res = {};
+    var req = {};
+    var next = jasmine.createSpy('call next route');
+    res.send = jasmine.createSpy('send results via restify');
+    var gameRequest = requests.index(req,res,next);
+    expect(next).toHaveBeenCalled();
+    expect(res.send).toHaveBeenCalled();
+  });
+
+});
+
 describe('bestMove', function () {
 
 //  it('it should send a result via restify and call the next route', function () {
