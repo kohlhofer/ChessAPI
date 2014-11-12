@@ -18,7 +18,7 @@
   "dependencies": {
     "chess": "0.2.5",
     "restify": "2.8.2",
-    "uci": "0.3.2"
+    "uci": "0.3.3"
   },
   "devDependencies": {
     "jasmine-node": "1.14.3"

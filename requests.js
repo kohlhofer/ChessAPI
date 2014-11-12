@@ -57,7 +57,7 @@ exports.bestMove = function(req, res, next) {
       return engine.uciNewGameCommand();
   }).then(function () {
       // console.log('New game started');
-      return engine.positionCommand('',movesString);
+      return engine.positionCommand('startpos',movesString);
   }).then(function () {
       // console.log('Starting position set');
       // console.log('Starting analysis');
