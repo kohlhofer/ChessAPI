@@ -15,6 +15,7 @@ server.use(restify.bodyParser({
   overrideParams: true
 }));
 
+server.get('/', requests.index); // return board, status and available moves for the current player
 server.post('/game', requests.game); // return board, status and available moves for the current player
 server.post('/game/:movecount', requests.game); // roll game back to movecount (if negative number roll back by movecount)
 server.post('/move', requests.move); // validate and apply new move

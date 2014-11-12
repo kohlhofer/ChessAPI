@@ -87,6 +87,16 @@ exports.bestMove = function(req, res, next) {
   }).done();
 };
 
+exports.index = function(req, res, next) {
+  var result = {};
+  result.name = 'ChessAPI';
+  result.version = '0.0.5';
+  result.documentation = '';
+  result.demoClient = '';
+  res.send(result);
+  next();
+};
+
 exports.square = function(req, res, next) {
   var history = chessHelpers.findHistoryInRequest(req);
   var game = gameEngine.create(history);
