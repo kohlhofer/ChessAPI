@@ -42,7 +42,7 @@ exports.move = function(req, res, next) {
 };
 
 exports.bestMove = function(req, res, next) {
-  var engine = new chessEngine('/Users/alex/Development/chessnode/stockfish/stockfish-5-64');
+  var engine = new chessEngine(process.env.CHESS_ENGINE);
   var history = chessHelpers.findHistoryInRequest(req);
   var game = gameEngine.create(history);
   var movesString = chessHelpers.getSquareBasedHistory(game.game.moveHistory);

@@ -10,8 +10,6 @@ Set up
 install dependencies:
 $ npm install
 
-Edit requests.js to point to stock fish executable. e.g:
-var engine = new chessEngine('/Users/alex/Development/chessnode/stockfish/stockfish-5-64');   
 
 
 Testing
@@ -23,5 +21,9 @@ $ node-jasmine .
 Start server
 ==========
 
+# tell the server where to find your UCI compatible chess engine executable
+export CHESS_ENGINE=$(command -v stockfish)
+
+# start the server
 $ node index.js
 
