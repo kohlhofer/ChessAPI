@@ -8,24 +8,33 @@ Set up
 =========
 
 install dependencies:
+
+```sh
 $ npm install
+```
 
 
 
 Testing
 =========
 
-$ node-jasmine . 
+```sh
+$ node-jasmine .
+```
 
 
 Start server
 ==========
 
-# tell the server where to find your UCI compatible chess engine executable
+tell the server where to find your UCI compatible chess engine executable:
+```sh
 export CHESS_ENGINE=$(command -v stockfish)
+```
 
-# start the server
+start the server:
+```sh
 $ node index.js
+```
 
 PM2 
 =========
@@ -35,7 +44,7 @@ https://github.com/Unitech/PM2
 
 Caveat: PM2 does not pass through enviroment variables so you will require to use a JSON config file like this:
 
-'''json
+```json
 {
     "name"        : "Chess API",
     "script"      : "index.js",
@@ -44,4 +53,4 @@ Caveat: PM2 does not pass through enviroment variables so you will require to us
         "CHESS_ENGINE": "path/to/UCI/Chess/Engine/Executable"
     }
 }
-'''
+```
