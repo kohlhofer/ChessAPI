@@ -24,6 +24,6 @@ server.post('/bestmove', requests.bestMove); // let the engine make the best mov
 server.post('/square/:square', requests.square); // any moves to or from the selected square for the current player
 server.post('/attacks', requests.attack); // find any move where the current player can take material
 
-server.listen(8080, function() {
+server.listen(process.env.CHESS_API_PORT, function() {
   console.log('%s listening at %s', server.name, server.url);
 });

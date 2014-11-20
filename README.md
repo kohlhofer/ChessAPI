@@ -29,6 +29,7 @@ Start server
 tell the server where to find your UCI compatible chess engine executable:
 ```sh
 export CHESS_ENGINE=$(command -v stockfish)
+export CHESS_API_PORT=8080
 ```
 
 start the server:
@@ -50,7 +51,9 @@ Caveat: PM2 does not pass through enviroment variables so you will require to us
     "script"      : "index.js",
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
     "env": {
-        "CHESS_ENGINE": "path/to/UCI/Chess/Engine/Executable"
+        "CHESS_ENGINE": "path/to/UCI/Chess/Engine/Executable",
+        "CHESS_API_PORT": 8080
+```
     }
 }
 ```
