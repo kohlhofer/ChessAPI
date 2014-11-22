@@ -1,7 +1,11 @@
 ChessAPI
 ========
 
-A restful chess API. In order to use you need to include a game's full hostory in each request (POST).
+A restful chess API at http://api.dxc4.com 
+
+In order to use it you need to include a game's full history in each request (POST). For a demo client visit http://dxc4.com
+
+Feedback and support lives here: http://simplydo.uservoice.com/forums/274824-dxc4
 
 
 Set up

@@ -91,6 +91,7 @@ exports.index = function(req, res, next) {
   var result = {};
   result.name = 'dxc4 API';
   result.apiUrl = 'http://api.dxc4.com';
+  result.support = 'http://simplydo.uservoice.com/forums/274824-dxc4';
   result.version = '0.0.5';
   result.demoClient = 'http://dxc4.com';
   result.demoClientSource = 'https://github.com/SimplyDo/chessAPP';
