@@ -5,11 +5,19 @@ var gameEngine = require('./game');
 var chessHelpers = require('./chessHelpers');
 
 var standardResult = function(game,history) {
-  var result = game.getStatus();
-  result.history = history;
-  result.fullMoves = game.game.moveHistory;
+  var result = {};
+  var gameStatus = game.getStatus();
+  result.isCheck = gameStatus.isCheck;
+  result.isCheckmate = gameStatus.isCheckmate;
+  result.isRepetition = gameStatus.isRepetition;
+  result.isStalemate = gameStatus.isStalemate;
   result.side = chessHelpers.whichSide(history);
   result.pgn = chessHelpers.generatePgn(history);
+  result.fen = chessHelpers.generateFen(gameStatus.board.squares);
+  result.previousMoves = history;
+  result.availableMoves = gameStatus.notatedMoves;
+  result.board = gameStatus.board.squares;
+  result.previousFullMoves = game.game.moveHistory;
   return result;
 };
 
@@ -46,7 +54,7 @@ exports.bestMove = function(req, res, next) {
   var history = chessHelpers.findHistoryInRequest(req);
   var game = gameEngine.create(history);
   var movesString = chessHelpers.getSquareBasedHistory(game.game.moveHistory);
-  var notatedBestMove, result, moved;
+  var notatedBestMove, result;
   engine.runProcess().then(function () {
       return engine.uciCommand();
   }).then(function (idAndOptions) {
@@ -69,7 +77,7 @@ exports.bestMove = function(req, res, next) {
       return engine.stopCommand();
   }).then(function (bestmove) {
       result = standardResult(game,history);
-      notatedBestMove = chessHelpers.findAlgebraicEquivalent(result.notatedMoves,bestmove);
+      notatedBestMove = chessHelpers.findAlgebraicEquivalent(result.availableMoves,bestmove);
       console.log('Bestmove: ');
       // console.log(bestmove);
       console.log(notatedBestMove);

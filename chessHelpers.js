@@ -26,6 +26,14 @@ exports.generatePgn = function(historyArray) {
   return pgn;
 };
 
+exports.generateFen = function(squaresArray) {
+  if (!squaresArray || !(squaresArray instanceof Array)) {
+    return 'Requires an array as input';
+  }
+  var fen = 'this is going to the current fen';
+  return fen;
+};
+
 exports.parseStringForSquare = function(string) {
   if (!string) {
     return 'Requires a string as input';
@@ -117,9 +125,9 @@ exports.findHistoryInRequest = function(req) {
 exports.whichSide = function(history) {
   // alt version for this via chess npm: console.log(game.game.getCurrentSide());
   if (history.length % 2 === 0) {
-    return { name: 'white' };
+    return 'white';
   } else {
-    return { name: 'black' };
+    return 'black';
   }
 };
 

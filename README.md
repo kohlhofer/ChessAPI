@@ -19,7 +19,7 @@ Testing
 =========
 
 ```sh
-$ node-jasmine .
+$ jasmine-node .
 ```
 
 

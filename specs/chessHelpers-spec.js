@@ -151,13 +151,13 @@ describe('whichSide', function () {
   it('should return whos turn it is based on the move count', function () {
     var history = ['a3','h6','b4'];
     var side = chessHelpers.whichSide(history);
-    expect(side.name).toBe('black');
+    expect(side).toBe('black');
   });
 
   it('should return whos turn it is based on the move count', function () {
     var history = ['a3','h6','b4','h5'];
     var side = chessHelpers.whichSide(history);
-    expect(side.name).toBe('white');
+    expect(side).toBe('white');
   });
 
 }); 
