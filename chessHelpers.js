@@ -26,11 +26,36 @@ exports.generatePgn = function(historyArray) {
   return pgn;
 };
 
-exports.generateFen = function(squaresArray) {
+exports.generateFen = function(squaresArray,side) {
+
   if (!squaresArray || !(squaresArray instanceof Array)) {
     return 'Requires an array as input';
   }
-  var fen = 'this is going to the current fen';
+
+  var stringPos,notation,side,type,rank,file;
+  var fen = '--------/--------/--------/--------/--------/--------/--------/--------';
+  var notationMap = {white:{rook:'R',knight:'N',bishop:'B',queen:'Q',king:'K',pawn:'P'},black:{rook:'r',knight:'n',bishop:'b',queen:'q',king:'k',pawn:'p'}};
+  var fileMap = {a:0,b:1,c:2,d:3,e:4,f:5,g:6,h:7};
+  var replaceAtPos = function(string,index, character) {
+    return string.substr(0, index) + character + string.substr(index+character.length);
+  };
+
+  for (var i = 0; i < squaresArray.length; i++) {
+    if (squaresArray[i].piece) {
+      side = squaresArray[i].piece.side.name;
+      rank = squaresArray[i].rank;
+      file = squaresArray[i].file;
+      type = squaresArray[i].piece.type;
+      notation = notationMap[side][type];
+      stringPos = (9 * (8-rank)) + fileMap[file];
+      fen = replaceAtPos(fen,stringPos,notation);
+    }
+  }
+  fen = fen.replace( /([-]+)/ig, function replacer(match){
+    var length = match.length;
+    return length;
+  });
+  fen = fen + ' ' + side.charAt(0);
   return fen;
 };
 
