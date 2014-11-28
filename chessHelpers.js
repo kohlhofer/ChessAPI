@@ -26,13 +26,13 @@ exports.generatePgn = function(historyArray) {
   return pgn;
 };
 
-exports.generateFen = function(squaresArray,side) {
+exports.generateFen = function(squaresArray,currentSide) {
 
   if (!squaresArray || !(squaresArray instanceof Array)) {
     return 'Requires an array as input';
   }
 
-  var stringPos,notation,side,type,rank,file;
+  var stringPos,notation,type,side,rank,file;
   var fen = '--------/--------/--------/--------/--------/--------/--------/--------';
   var notationMap = {white:{rook:'R',knight:'N',bishop:'B',queen:'Q',king:'K',pawn:'P'},black:{rook:'r',knight:'n',bishop:'b',queen:'q',king:'k',pawn:'p'}};
   var fileMap = {a:0,b:1,c:2,d:3,e:4,f:5,g:6,h:7};
@@ -55,7 +55,7 @@ exports.generateFen = function(squaresArray,side) {
     var length = match.length;
     return length;
   });
-  fen = fen + ' ' + side.charAt(0);
+  fen = fen + ' ' + currentSide.charAt(0);
   return fen;
 };
 
