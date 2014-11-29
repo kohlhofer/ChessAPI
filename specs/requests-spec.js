@@ -72,19 +72,6 @@ describe('square', function () {
 
 });
 
-describe('attack', function () {
-
-  it('it should send a result via restify and call the next route', function () {
-    var req = {params:{pgn:'1. a3 h6 2. a4'}};
-    var res = {};
-    var next = jasmine.createSpy('call next route');
-    res.send = jasmine.createSpy('send results via restify');
-    var gameRequest = requests.attack(req,res,next);
-    expect(next).toHaveBeenCalled();
-    expect(res.send).toHaveBeenCalled();
-  });
-
-});
 describe('game', function () {
 
   it('it should send a result via restify and call the next route', function () {

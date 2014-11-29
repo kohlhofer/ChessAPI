@@ -20,7 +20,6 @@ server.post('/game', requests.game); // return board, status and available moves
 server.post('/move', requests.move); // validate and apply new move
 server.post('/bestmove', requests.bestMove); // let the engine make the best move
 server.post('/square', requests.square); // any moves to or from the selected square for the current player
-server.post('/attacks', requests.attack); // find any move where the current player can take material
 
 server.listen(process.env.CHESS_API_PORT, function() {
   console.log('%s listening at %s', server.name, server.url);
