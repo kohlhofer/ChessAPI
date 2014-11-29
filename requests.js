@@ -113,7 +113,7 @@ exports.square = function(req, res, next) {
   var result = standardResult(game,history);
   if (req.params.square) {
     var square = chessHelpers.parseStringForSquare(req.params.square, next);
-    result.square = chessHelpers.analyseSquare(result.notatedMoves, square);
+    result.square = chessHelpers.analyseSquare(result.availableMoves, square);
   }
   res.send(result);
   next();
@@ -123,7 +123,7 @@ exports.attack = function(req, res, next) {
   var history = chessHelpers.findHistoryInRequest(req);
   var game = gameEngine.create(history);
   var result = standardResult(game,history);
-  result.attacks = chessHelpers.analyseAttacks(result.notatedMoves);
+  result.attacks = chessHelpers.analyseAttacks(result.availableMoves);
   res.send(result);
   next();
 };
