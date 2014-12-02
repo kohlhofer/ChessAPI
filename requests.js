@@ -33,6 +33,10 @@ var standardResult = function(game,history,includes) {
   if (checkStringForSubstring(includes,'previousMoves')) {
     result.previousMoves = history;
   }
+
+  if (checkStringForSubstring(includes,'valuation')) {
+    result.valuation = chessHelpers.armyStrength(board);
+  }
   
   if (checkStringForSubstring(includes,'availableMoves')) {
     result.availableMoves = availableMoves;

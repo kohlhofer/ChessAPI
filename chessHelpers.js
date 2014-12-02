@@ -95,6 +95,25 @@ exports.analyseSquare = function(moves,square) {
   return result;
 };
 
+exports.armyStrength = function(squaresArray) {
+  var side, type;
+  var valuation = {black:{totalValue:0,pieces:{}},white:{totalValue:0,pieces:{}}};
+  var valueMap = {'king':0,'queen':9,'rook':5,'bishop':3,'knight':3,'pawn':1};
+  for (var i = 0; i < squaresArray.length; i++) {
+    if (squaresArray[i].piece) {
+      side = squaresArray[i].piece.side.name;
+      type = squaresArray[i].piece.type;
+      if (valuation[side].pieces[type]) {
+        valuation[side].pieces[type]++;
+      } else {
+        valuation[side].pieces[type] = 1;
+      }
+      valuation[side].totalValue = valuation[side].totalValue + valueMap[type];
+    }
+  }
+  return valuation;
+};
+
 exports.findAlgebraicEquivalent = function(moves,squares) {
   var move;
   var from;
