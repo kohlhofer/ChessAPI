@@ -72,27 +72,14 @@ exports.parseStringForSquare = function(string) {
   }
 };
 
-exports.analyseSquare = function(moves,square) {
-  var result = {};
-  var move;
-  var target;
-  result.to = [];
-  result.from = [];
-  result.rank = square.rank;
-  result.file = square.file;
+exports.flattenedMoves = function(moves) {
+  var flattenedMoves = [];
   for (var property in moves) {
     if (moves.hasOwnProperty(property)) {
-      move = moves[property];
-      target = {};
-      target[property] = move;
-      if (move.src.rank === square.rank && move.src.file === square.file) {
-        result.from.push(target);
-      } else if (move.dest.rank === square.rank && move.dest.file === square.file) {
-        result.to.push(target);
-      }
+     flattenedMoves.push(property);  
     }
   }
-  return result;
+  return flattenedMoves;
 };
 
 exports.armyStrength = function(squaresArray) {
