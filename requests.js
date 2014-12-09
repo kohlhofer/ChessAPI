@@ -112,7 +112,7 @@ var bestMove = function(res, next, includes, history, game) {
   }).done();
 };
 
-exports.game = function(req, res, next) {
+exports.pgnparser = function(req, res, next) {
   var history = chessHelpers.findHistoryInRequest(req);
 
   if (req.params.nextMove) {

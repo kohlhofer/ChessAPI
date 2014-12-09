@@ -16,7 +16,7 @@ server.use(restify.bodyParser({
 }));
 
 server.get('/', requests.index); // return board, status and available moves for the current player
-server.post('/game', requests.game); // return board, status and available moves for the current player
+server.post('/pgnparser', requests.pgnparser); // return board, status and available moves for the current player
 
 server.listen(process.env.CHESS_API_PORT, function() {
   console.log('%s listening at %s', server.name, server.url);
