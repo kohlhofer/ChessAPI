@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "chess": "0.2.5",
+    "mixpanel": "0.0.20",
     "restify": "2.8.2",
     "uci": "0.3.3"
   },

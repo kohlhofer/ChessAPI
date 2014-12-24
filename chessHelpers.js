@@ -26,6 +26,14 @@ exports.generatePgn = function(historyArray) {
   return pgn;
 };
 
+exports.ip = function(request) {
+  var ip = request.headers['x-forwarded-for'] || 
+    request.connection.remoteAddress || 
+    request.socket.remoteAddress ||
+    request.connection.socket.remoteAddress;
+  return ip;
+};
+
 exports.generateFen = function(squaresArray,currentSide) {
 
   if (!squaresArray || !(squaresArray instanceof Array)) {

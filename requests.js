@@ -3,6 +3,9 @@
 var chessEngine = require('uci');
 var gameEngine = require('./game');
 var chessHelpers = require('./chessHelpers');
+var Mixpanel = require('mixpanel');
+
+var analytics = Mixpanel.init('6360e45b5a3af30ebb1bbb9ca4239772');
 
 var standardResult = function(game,history,includes) {
   var result = {};
@@ -114,27 +117,37 @@ var bestMove = function(res, next, includes, history, game) {
 
 exports.pgnparser = function(req, res, next) {
   var history = chessHelpers.findHistoryInRequest(req);
+  var analyticsEvent = {};
+  
+  analyticsProps.ip = chessHelpers.ip(req);
+  analyticsProps.url = req.url;
+  analyticsProps.history = history.length;
 
   if (req.params.nextMove) {
     history.push(req.params.nextMove);
+    analyticsProps.nextMove = true;
   }
   
   if (req.params.moveCount !== undefined) {
     history = history.slice(0,req.params.moveCount);
+    analyticsProps.moveCount = req.params.moveCount;
   }
 
   var game = gameEngine.create(history);
 
   if (req.params.includes === undefined) {
     req.params.includes = 'status pgn';
+    analyticsProps.moveCount = req.params.includes;
   }
   if (req.params.stockfish === true || req.params.stockfish === 'true') {
     bestMove(res, next, req.params.includes, history, game);
+    analyticsProps.stockfish = true;
     return;
   }
 
   var result = standardResult(game,history,req.params.includes);
   res.send(result);
+  analytics.track("pgn parser requested", analyticsProps);
   next();
 };
 
@@ -150,5 +163,9 @@ exports.index = function(req, res, next) {
   result.issues = 'tbd';
   result.version = '0.0.6';
   res.send(result);
+  analytics.track("index requested", {
+    ip: chessHelpers.ip(req),
+    url: req.url 
+  });
   next();
 };
