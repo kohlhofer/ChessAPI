@@ -137,8 +137,9 @@ exports.pgnparser = function(req, res, next) {
 
   if (req.params.includes === undefined) {
     req.params.includes = 'status pgn';
-    analyticsProps.includes = req.params.includes;
   }
+  analyticsProps.includes = req.params.includes;
+
   if (req.params.stockfish === true || req.params.stockfish === 'true') {
     bestMove(res, next, req.params.includes, history, game);
     analyticsProps.stockfish = true;
